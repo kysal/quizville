@@ -1,0 +1,15 @@
+<mat-card *ngFor="let quiz of quizList; let i = index">
+  <mat-card-title>{{quiz.title}}</mat-card-title>
+  <mat-card-content>
+    <h2>Category</h2>
+    <p>{{quiz.category}}</p>
+    <h2>Quiz Length</h2>
+    <p>{{quiz.questLen}} questions</p>
+  </mat-card-content>
+  <mat-card-footer>
+    <span *ngIf="!(quiz.public)">
+      <button mat-raised-button color="primary" (click)="publish(quiz._id)">Publish</button>
+    </span>
+    <button mat-raised-button color="warn" (click)="remove(i)">Delete</button>
+  </mat-card-footer>
+</mat-card>

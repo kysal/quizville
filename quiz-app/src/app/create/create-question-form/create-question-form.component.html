@@ -1,0 +1,72 @@
+<mat-card>
+  <mat-card-title>New Question</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+      <!-- QUESTION DETAILS -->
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Question Title</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Question Text</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Marks Awarded</mat-label>
+          <input matInput formControlName="marks" type="number">
+        </mat-form-field>
+      </div>
+      <hr>
+      <!-- ANSWER DETAILS -->
+      <mat-form-field appearance="fill">
+        <mat-label>Answer Type</mat-label>
+        <mat-select formControlName="questionType" required>
+          <mat-option *ngFor="let t of questionTypes" [value]="t.value">
+            {{t.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div formGroupName="uniqueFields">
+        <div *ngIf="form.value.questionType == 'multiple-choice-0'" class="multiple-choice-fields" formGroupName="multipleChoice">
+          <mat-form-field appearance="fill">
+            <mat-label>Answer Box 1</mat-label>
+            <input matInput formControlName="answerBox1">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Answer Box 2</mat-label>
+            <input matInput formControlName="answerBox2">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Answer Box 3</mat-label>
+            <input matInput formControlName="answerBox3">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Answer Box 4</mat-label>
+            <input matInput formControlName="answerBox4">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Correct Box</mat-label>
+            <mat-select formControlName="correctBox" required>
+              <mat-option *ngFor="let box of answerBoxes" [value]="box.value">
+                {{box.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+        </div>
+        <div *ngIf="form.value.questionType == 'short-answer-1'" class="short-answer-fields" formGroupName="shortAnswer">
+          <mat-form-field appearance="fill">
+            <mat-label>Answer</mat-label>
+            <input matInput formControlName="answer">
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </mat-card-content>
+</mat-card>

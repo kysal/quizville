@@ -1,0 +1,26 @@
+<mat-card *ngFor="let question of questionList; let i = index">
+  <mat-card-title>{{question.name}}</mat-card-title>
+  <hr>
+  <mat-card-content>
+    <div>
+      <h2>Question Text</h2>
+      <p>"{{question.description}}"</p>
+    </div>
+    <div>
+      <h2>Question Type</h2>
+      <p>{{question.questionType}}</p>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <div *ngIf="!(question.creator == uid)">
+      <button mat-raised-button color="warn" (click)="remove(i)">Delete</button>
+    </div>
+    <div *ngIf="question.creator == uid">
+      <div *ngIf="!question.public">
+        <button mat-raised-button color="primary" (click)="publish(question._id)">Publish</button>
+      </div>
+        <button mat-raised-button color="warn" (click)="remove(i)">Delete</button>
+    </div>
+  </mat-card-footer>
+</mat-card>
+

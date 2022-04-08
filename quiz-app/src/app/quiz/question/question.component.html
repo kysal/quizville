@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title style="text-align: center">
+    {{currentQuestion.description}}
+  </mat-card-title>
+  <mat-card-content>
+      <div *ngIf="currentQuestion.questionType == 'multiple-choice-0'">
+        <button mat-raised-button (click)="answer('1')">{{currentQuestion.uniqueFields.multipleChoice.answerBox1}}</button>
+        <button mat-raised-button (click)="answer('2')">{{currentQuestion.uniqueFields.multipleChoice.answerBox2}}</button>
+        <button mat-raised-button (click)="answer('3')">{{currentQuestion.uniqueFields.multipleChoice.answerBox3}}</button>
+        <button mat-raised-button (click)="answer('4')">{{currentQuestion.uniqueFields.multipleChoice.answerBox4}}</button>
+      </div>
+      <div *ngIf="currentQuestion.questionType == 'short-answer-1'">
+<!--        <form>-->
+          <mat-form-field appearance="fill">
+            <mat-label>Answer</mat-label>
+            <input matInput #ans type="text">
+          </mat-form-field>
+          <br>
+          <button mat-raised-button (click)="answer(ans.value)">Submit</button>
+<!--        </form>-->
+      </div>
+  </mat-card-content>
+</mat-card>

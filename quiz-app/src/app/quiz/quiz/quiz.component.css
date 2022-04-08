@@ -1,0 +1,25 @@
+.next-quest {
+  float: right;
+}
+
+.question-card {
+  margin: 50px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px;
+  grid-template-rows: 50px 50px;
+  padding: 10px;
+}
+
+.multiple-choice-button {
+  width: 50%;
+  margin-top: 10px;
+}
+
+.question-feedback-toolbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+}

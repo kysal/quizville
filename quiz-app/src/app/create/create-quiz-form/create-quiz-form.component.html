@@ -1,0 +1,102 @@
+<h1>Quiz Creation Tool</h1>
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+  <mat-card class="main-card">
+    <h2>Quiz Details</h2>
+    <div class="quiz-details-container">
+      <mat-form-field class="quiz-details" appearance="fill">
+        <mat-label>Quiz Title</mat-label>
+        <input matInput formControlName="title" type="text">
+      </mat-form-field> <!--Quiz Title-->
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of quizCategories" [value]="category.value">{{category.viewValue}}</mat-option>
+        </mat-select>
+      </mat-form-field> <!--Quiz Category-->
+    </div>
+    <div formArrayName="questions">
+      <h2>Questions</h2>
+      <div class="question-card" *ngFor="let q of questions.controls; let i = index" [formGroupName]="i">
+        <mat-card>
+          <mat-card-title>Question {{i+1}}</mat-card-title>
+          <mat-card-content>
+            <!-- QUESTION DETAILS -->
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Question Title</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Question Text</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Marks Awarded</mat-label>
+                <input matInput formControlName="marks" type="number">
+              </mat-form-field>
+            </div>
+            <hr>
+            <!-- ANSWER DETAILS -->
+            <mat-form-field appearance="fill">
+              <mat-label>Answer Type</mat-label>
+              <mat-select formControlName="questionType" required>
+                <mat-option *ngFor="let t of questionTypes" [value]="t.value">
+                  {{t.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div formGroupName="uniqueFields">
+              <div *ngIf="q.value.questionType == 'multiple-choice-0'" class="multiple-choice-fields" formGroupName="multipleChoice">
+                <mat-form-field appearance="fill">
+                  <mat-label>Answer Box 1</mat-label>
+                  <input matInput formControlName="answerBox1">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Answer Box 2</mat-label>
+                  <input matInput formControlName="answerBox2">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill">
+                  <mat-label>Answer Box 3</mat-label>
+                  <input matInput formControlName="answerBox3">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Answer Box 4</mat-label>
+                  <input matInput formControlName="answerBox4">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill">
+                  <mat-label>Correct Box</mat-label>
+                  <mat-select formControlName="correctBox" required>
+                    <mat-option *ngFor="let box of answerBoxes" [value]="box.value">
+                      {{box.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+
+              </div>
+              <div *ngIf="q.value.questionType == 'short-answer-1'" class="short-answer-fields" formGroupName="shortAnswer">
+                <mat-form-field appearance="fill">
+                  <mat-label>Answer</mat-label>
+                  <input matInput formControlName="answer">
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-footer>
+            <button mat-raised-button color="warn" (click)="deleteQuestion(i)" >Delete</button>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" type="button" (click)="createNewQuestion()">Create New Question</button>
+      <!-- Not Yet Implemented -->
+      <button mat-raised-button color="primary" type="button" (click)="openQuestionBankDialog()">Pull Question From Bank</button>
+    </div>
+  </mat-card>
+  <button mat-raised-button type="submit">Create Quiz</button>
+</form>
+

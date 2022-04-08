@@ -1,0 +1,22 @@
+<mat-card *ngFor="let question of questions; let i = index">
+  <mat-card-title>{{question.name}}</mat-card-title>
+  <hr>
+  <mat-card-content>
+    <div>
+      <h2>Question Text</h2>
+      <p>"{{question.description}}"</p>
+    </div>
+    <div>
+      <h2>Question Type</h2>
+      <p>{{question.questionType}}</p>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <div *ngIf="question.creator == uid">
+      <button mat-raised-button color="warn" (click)="removeQuestion(i)">Remove</button>
+    </div>
+    <div *ngIf="!(question.creator == uid)">
+      <button mat-raised-button color="primary" (click)="importQuestion(question)">Import to Question Bank</button>
+    </div>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,23 @@
+<div *ngIf="!loaded">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loaded">
+  <mat-card>
+    <mat-card-title>Quiz Report</mat-card-title>
+    <mat-card-content>
+      <div>
+        <h2>Quiz Title: {{quizDisplay.title}}</h2>
+      </div>
+
+      <div>
+        <h2>You Scored {{report.quizDetails.marksAwarded}}/{{report.quizDetails.marksAvailable}}</h2>
+        <mat-spinner mode="determinate" [value]="(report.quizDetails.marksAwarded/report.quizDetails.marksAvailable) * 100"></mat-spinner>
+      </div>
+      <div>
+        <h2>Time taken: {{timeTaken}}</h2>
+      </div>
+      <button mat-raised-button color="primary" routerLink="/dashboard">Return to dashboard</button>
+      <button mat-raised-button color="primary" routerLink="/report">Show all reports</button>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,14 @@
+<div class="app-toolbar">
+  <mat-toolbar color="primary">
+    <span style="cursor: pointer" routerLink="/">Quizville</span>
+    <span class="spacer"></span>
+    <span *ngIf="!auth.loggedIn()">
+    <button mat-button routerLink="/login">Login</button>
+  </span>
+    <span *ngIf="auth.loggedIn()">
+    <button mat-button routerLink="/dashboard">Dashboard</button>
+    <button mat-button (click)="logoutClick()">Log Out</button>
+  </span>
+  </mat-toolbar>
+</div>
+

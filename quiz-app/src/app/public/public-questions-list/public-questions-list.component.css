@@ -1,0 +1,21 @@
+mat-card {
+  float: left;
+  width: 200px;
+  margin: 20px;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+mat-card-footer {
+  width: 100%;
+}
+
+button {
+  margin: 10px;
+}

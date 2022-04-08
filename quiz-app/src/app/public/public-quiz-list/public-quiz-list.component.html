@@ -1,0 +1,17 @@
+<mat-card *ngFor="let quiz of quizzes; let i = index">
+  <mat-card-title>{{quiz.title}}</mat-card-title>
+  <mat-card-content>
+    <h2>Category</h2>
+    <p>{{quiz.category}}</p>
+    <h2>Quiz Length</h2>
+    <p>{{quiz.questions.length}} questions</p>
+  </mat-card-content>
+  <mat-card-footer>
+    <div *ngIf="quiz.uid == uid">
+      <button mat-raised-button color="warn" (click)="removeQuiz(i)">Remove</button>
+    </div>
+    <div *ngIf="!(quiz.uid == uid)">
+      <button mat-raised-button color="primary" (click)="importQuestion(quiz)">Import to Quiz Bank</button>
+    </div>
+  </mat-card-footer>
+</mat-card>

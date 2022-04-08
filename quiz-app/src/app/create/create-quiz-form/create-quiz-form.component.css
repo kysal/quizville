@@ -1,0 +1,26 @@
+.question-card {
+  padding: 20px;
+}
+
+.main-card {
+  margin: 20px;
+  background-color: lightyellow;
+}
+
+.quiz-details {
+  margin: 10px;
+}
+
+.quiz-details-container{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+}

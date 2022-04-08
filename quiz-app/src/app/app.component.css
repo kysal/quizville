@@ -1,0 +1,5 @@
+.app-toolbar {
+  position: -webkit-sticky;
+  bottom: 0;
+  z-index: 1000;
+}

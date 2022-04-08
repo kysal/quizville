@@ -1,0 +1,36 @@
+<div *ngIf="!started">
+  <button mat-raised-button color="primary" (click)="startQuiz()">Start</button>
+</div>
+
+<div *ngIf="started">
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+  <mat-card class="question-card">
+    <mat-card-title style="text-align: center">
+      {{activeQuest.description}}
+    </mat-card-title>
+    <mat-card-content>
+      <div *ngIf="activeQuest.questionType == 'multiple-choice-0'">
+        <button mat-raised-button (click)="answer('1')" class="multiple-choice-button">{{activeQuest.uniqueFields.multipleChoice.answerBox1}}</button>
+        <button mat-raised-button (click)="answer('2')" class="multiple-choice-button">{{activeQuest.uniqueFields.multipleChoice.answerBox2}}</button>
+        <button mat-raised-button (click)="answer('3')" class="multiple-choice-button">{{activeQuest.uniqueFields.multipleChoice.answerBox3}}</button>
+        <button mat-raised-button (click)="answer('4')" class="multiple-choice-button">{{activeQuest.uniqueFields.multipleChoice.answerBox4}}</button>
+      </div>
+      <div *ngIf="activeQuest.questionType == 'short-answer-1'">
+        <mat-form-field appearance="fill">
+          <mat-label>Answer</mat-label>
+          <input matInput #ans type="text">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button (click)="answer(ans.value)">Submit</button>
+      </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="questionDisabled">
+      {{endQuestionMsg}}
+    </mat-card-footer>
+  </mat-card>
+<!--  <app-question [currentQuestion]="quiz.questions[questionIndex]"></app-question>-->
+  <button *ngIf="!isEnd" class="next-quest" mat-raised-button color="primary" (click)="changeQuestion()">Next Question</button>
+  <button *ngIf="isEnd" class="next-quest" mat-raised-button color="primary" (click)="endQuiz()">End Quiz</button>
+</div>
+
+
